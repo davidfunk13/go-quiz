@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/csv"
 	"flag"
 	"fmt"
 	"os"
@@ -19,7 +20,12 @@ func main() {
 		fmt.Println(err, "error")
 	}
 
-	fmt.Println(file)
+	f := csv.NewReader(file)
+
+	parsed, err := f.ReadAll()
+
+	fmt.Println(parsed)
+
 	exitProgram("shutting down")
 }
 
